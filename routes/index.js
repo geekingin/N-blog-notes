@@ -30,7 +30,6 @@ module.exports=function(app){
 //    回调函数有两个参数req和res，分别代表请求信息和相应信息。
     app.get('/',function(req,res){
         Post.get(null,function(err,posts){
-
            if (err) {
                posts=[];
            }
