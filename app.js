@@ -11,6 +11,8 @@ var MongoStore=require('connect-mongo')(session);
 var routes = require('./routes/index');
 var settings=require('./settings');
 
+var multer=require('multer');
+
 //flash 是一个在session中用于存储信息的特定区域，信息写入flash，*下一次*显示后即被清除。
 //典型应用是结合重定向功能，确保信息是提供给下一个被渲染的页面。
 var flash=require('connect-flash');
@@ -54,6 +56,14 @@ app.use(session({
         host:settings.host,
         port:settings.port
     })
+}));
+
+//利用express的第三方中间件multer来实现文件上传功能
+app.use(multer({
+    dest:'./public/images',//上传文件所在目录
+    rename: function (filedname, filename) {//修改上传后的文件名，这里设置为保持原来的命名
+        return filename;
+    }
 }));
 //路由控制
 //app.use('/', routes);
