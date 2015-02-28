@@ -160,7 +160,7 @@ module.exports=function(app){
 //        把req.session.user赋值null丢掉session中的用户信息
         req.session.user=null;
         req.flash('success','登出成功');
-        return rs.redirect('/');//登出成功后跳转到主页
+        return res.redirect('/');//登出成功后跳转到主页
     });
     app.get('/upload',checkLogin);
     app.get('/upload',function(req,res){
